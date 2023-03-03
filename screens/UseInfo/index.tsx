@@ -13,6 +13,10 @@ export default function UseInfoScreen() {
   return (
     <Container.Scroll>
       <Item
+        title="사용 전 지침사항"
+        onPress={() => onPress('UseDefaultInfoScreen')}
+      />
+      <Item
         title="배터리 교체 방법"
         onPress={() => onPress('BatteryUseInfoScreen')}
       />

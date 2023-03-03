@@ -58,7 +58,7 @@ export default function List({setIsScanning}: Props) {
       <>
         <Item
           key={'12345-67890'}
-          data={{id: '12345-67890', name: '임시 패스~'}}
+          data={{id: '12345-67890', name: 'Device-001'}}
           isPass={true}
         />
         {!list?.length ? (

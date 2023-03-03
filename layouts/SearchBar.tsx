@@ -1,6 +1,7 @@
 import {Dispatch, SetStateAction, useMemo} from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {colors} from '../assets/strings';
 
 type Props = {
   placeholder?: string;
@@ -69,6 +70,6 @@ const SortButton = styled.TouchableOpacity.attrs(() => ({
   margin-left: 6px;
 `;
 const SortIcon = styled(Icon)`
-  color: #888888;
+  color: ${colors.disable};
   font-size: 18px;
 `;

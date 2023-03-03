@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ConnectDevice from '../../layouts/ConnectDevice';
+import HeaderStatus from '../../layouts/HeaderStatus';
 import SettingScreen from '../../screens/Setting';
 import FoundationSettingScreen from '../../screens/FoundationSetting';
 import ExerciseSettingScreen from '../../screens/ExerciseSetting';
@@ -11,6 +11,7 @@ import AddPushSettingScreen from '../../screens/AddPushSetting';
 import RemainSettingScreen from '../../screens/RemainSetting';
 import ChangeSettingScreen from '../../screens/ChangeSetting';
 import OutAirSettingScreen from '../../screens/OutAirSetting';
+import UnitSettingScreen from '../../screens/UnitSetting';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ export default function SettingStack() {
   return (
     <Stack.Navigator
       initialRouteName="SettingScreen"
-      screenOptions={{headerTitleAlign: 'center', headerRight: ConnectDevice}}>
+      screenOptions={{headerTitleAlign: 'center', headerRight: HeaderStatus}}>
       <Stack.Screen
         name="SettingScreen"
         component={SettingScreen}
@@ -73,6 +74,11 @@ export default function SettingStack() {
         name="OutAirSettingScreen"
         component={OutAirSettingScreen}
         options={{title: '공기 배출'}}
+      />
+      <Stack.Screen
+        name="UnitSettingScreen"
+        component={UnitSettingScreen}
+        options={{title: '설정 단위'}}
       />
     </Stack.Navigator>
   );

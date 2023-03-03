@@ -2,7 +2,7 @@ import {ReactElement} from 'react';
 import styled from 'styled-components/native';
 
 type Props = {
-  children?: ReactElement<any, any> | null;
+  children?: ReactElement<any, any> | ReactElement<any, any>[] | null;
   visible: boolean;
   style?: 'formSheet' | 'fullScreen' | 'pageSheet' | 'overFullScreen';
 };

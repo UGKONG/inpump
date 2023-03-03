@@ -1,12 +1,10 @@
 import {Platform} from 'react-native';
 import styled from 'styled-components/native';
-// import titleImage from '../assets/title.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 const os = Platform.OS;
 
-// export const HeaderTitle = () => <HeaderTitleContainer source={titleImage} />;
 export const HeaderTitle = () => (
   <HeaderTitleContainer>인펌프</HeaderTitleContainer>
 );
@@ -21,13 +19,6 @@ export const HeaderRight = () => {
   );
 };
 
-// const HeaderTitleContainer = styled.Image.attrs(() => ({
-//   resizeMode: 'contain',
-// }))`
-//   width: 80px;
-//   height: 34px;
-//   margin-bottom: ${os === 'android' ? '0px' : '5px'};
-// `;
 const HeaderTitleContainer = styled.Text`
   font-size: 16px;
   font-weight: 700;

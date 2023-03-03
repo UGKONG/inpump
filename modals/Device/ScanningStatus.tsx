@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {colors} from '../../assets/strings';
 import ButtonLoading from '../../layouts/ButtonLoading';
 
 export default function ScanningStatus() {
@@ -17,7 +18,7 @@ const TextWrap = styled.View`
   padding-bottom: 1px;
 `;
 const Text = styled.Text<{size?: number; bold?: boolean}>`
-  color: #666;
+  color: ${colors.disable};
   font-size: 14px;
   font-weight: 700;
   margin-left: 5px;

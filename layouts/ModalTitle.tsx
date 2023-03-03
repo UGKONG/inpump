@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {colors} from '../assets/strings';
 
 type Props = {
   title: string;
@@ -41,7 +42,7 @@ const Description = styled.Text`
   padding: 0 10px;
   font-size: 12px;
   font-weight: 700;
-  color: #fc6969;
+  color: ${colors.error};
 `;
 const CloseBtn = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.7,
@@ -51,5 +52,5 @@ const CloseBtn = styled.TouchableOpacity.attrs(() => ({
 const CloseText = styled.Text`
   font-size: 16px;
   letter-spacing: 1px;
-  color: #777;
+  color: ${colors.disable};
 `;

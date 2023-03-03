@@ -1,13 +1,14 @@
 import {Alert} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useStorage from '../../hooks/useStorage';
 import Container from '../../layouts/Container';
 import Item from '../../layouts/Item';
 import ItemGroup from '../../layouts/ItemGroup';
 
 export default function SettingScreen({navigation}: any) {
-  const dispatch = useDispatch();
   const storage = useStorage();
+  const dispatch = useDispatch();
+  const device = useSelector((x: Store) => x?.device);
 
   const onPress = (screen?: string): void => {
     if (!screen) return;
@@ -49,10 +50,9 @@ export default function SettingScreen({navigation}: any) {
         onPress={() => onPress('FoundationSettingScreen')}
       />
       <Item
-        title="운동 설정"
+        title="운동 주입"
         onPress={() => onPress('ExerciseSettingScreen')}
       />
-      <Item title="일시 정지" onPress={() => onPress('StopSettingScreen')} />
       <ItemGroup title="식사" />
       <Item title="식사 설정" onPress={() => onPress('MealSettingScreen')} />
       <Item
@@ -61,11 +61,16 @@ export default function SettingScreen({navigation}: any) {
       />
       <Item title="회식 주입" onPress={() => onPress('OutMealSettingScreen')} />
       <Item title="추가 주입" onPress={() => onPress('AddPushSettingScreen')} />
+
       <ItemGroup title="주사기" />
       <Item title="잔량 수정" onPress={() => onPress('RemainSettingScreen')} />
       <Item title="교체" onPress={() => onPress('ChangeSettingScreen')} />
       <Item title="공기 배출" onPress={() => onPress('OutAirSettingScreen')} />
-      <ItemGroup title="장치" />
+
+      <ItemGroup title="정보" />
+      <Item title="설정 단위" onPress={() => onPress('UnitSettingScreen')} />
+
+      <ItemGroup title="장치" subTitle={'연결창치: ' + device?.name} />
       <Item
         title="장치 연결 해제"
         onPress={() =>

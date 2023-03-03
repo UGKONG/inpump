@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {colors} from '../assets/strings';
 
 const battery = [
   'ios-battery-dead-sharp',
@@ -9,15 +10,14 @@ const battery = [
   'ios-battery-charging-sharp',
 ];
 
-export default function ConnectDevice() {
+export default function HeaderStatus() {
   const device = useSelector((x: Store) => x?.device);
 
   return (
     <Container>
-      {/* <Icon name={battery[2]} /> */}
-      <Icon name="alert-circle-outline" color="#f00" />
-      <Icon name="sync-outline" color="#126a03" />
-      <Icon name="ios-bluetooth" color="#00f" />
+      <Icon name="alert-circle-outline" color={colors.error} />
+      <Icon name="sync-outline" color={colors.success} />
+      <Icon name="ios-bluetooth" color={colors.bluetooth} />
     </Container>
   );
 }
@@ -29,6 +29,6 @@ const Container = styled.View`
 `;
 const Icon = styled(Ionicons)<{color?: string}>`
   font-size: 19px;
-  color: ${x => x?.color ?? '#343434'};
+  color: ${x => x?.color ?? colors.disable};
   margin-left: 6px;
 `;

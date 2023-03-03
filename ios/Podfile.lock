@@ -80,8 +80,6 @@ PODS:
   - OpenSSL-Universal (1.1.1100)
   - Permission-BluetoothPeripheral (3.7.2):
     - RNPermissions
-  - Permission-FaceID (3.7.2):
-    - RNPermissions
   - Permission-LocationAccuracy (3.7.2):
     - RNPermissions
   - Permission-LocationAlways (3.7.2):
@@ -435,6 +433,8 @@ PODS:
     - React-perflogger (= 0.71.3)
   - RNCAsyncStorage (1.17.11):
     - React-Core
+  - RNCPicker (2.4.8):
+    - React-Core
   - RNPermissions (3.7.2):
     - React-Core
   - RNScreens (3.20.0):
@@ -478,7 +478,6 @@ DEPENDENCIES:
   - libevent (~> 2.1.12)
   - OpenSSL-Universal (= 1.1.1100)
   - Permission-BluetoothPeripheral (from `../node_modules/react-native-permissions/ios/BluetoothPeripheral`)
-  - Permission-FaceID (from `../node_modules/react-native-permissions/ios/FaceID`)
   - Permission-LocationAccuracy (from `../node_modules/react-native-permissions/ios/LocationAccuracy`)
   - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways`)
   - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse`)
@@ -515,6 +514,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -553,8 +553,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
   Permission-BluetoothPeripheral:
     :path: "../node_modules/react-native-permissions/ios/BluetoothPeripheral"
-  Permission-FaceID:
-    :path: "../node_modules/react-native-permissions/ios/FaceID"
   Permission-LocationAccuracy:
     :path: "../node_modules/react-native-permissions/ios/LocationAccuracy"
   Permission-LocationAlways:
@@ -623,6 +621,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNScreens:
@@ -653,7 +653,6 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   Permission-BluetoothPeripheral: e6a9e5853f5fb26808c56f845cf517d6ad14d438
-  Permission-FaceID: 7ddd8a335ebd1599a00ff59c6355e6cfb828d5b2
   Permission-LocationAccuracy: da87e9c0d89a0006ab7127a5515305104b175310
   Permission-LocationAlways: 4d1851ee9fe9a0407454e2e2207bcaf1b5c47f38
   Permission-LocationWhenInUse: c8e343e44167ba8c87c3e4a3fe7880edcdee6fc9
@@ -688,6 +687,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 7bf0dafc7b727d93c8cb94eb00a9d3753c446c3e
   ReactCommon: 6f65ea5b7d84deb9e386f670dd11ce499ded7b40
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
+  RNCPicker: 0bf8ef8f7800524f32d2bb2a8bcadd53eda0ecd1
   RNPermissions: 2fbbcb7244357507f958d626d58eb15fb0013d85
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
@@ -695,6 +695,6 @@ SPEC CHECKSUMS:
   Yoga: 5ed1699acbba8863755998a4245daa200ff3817b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: caf03b000b8c32ae2bc7b3f53d15215f91f01753
+PODFILE CHECKSUM: 7c5a3e7ef1bd7070f4b9530a78b5c362bd8d9278
 
 COCOAPODS: 1.11.3

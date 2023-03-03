@@ -1,25 +1,63 @@
 import styled from 'styled-components/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {colors} from '../assets/strings';
+import {useMemo} from 'react';
 
-const Button = (props: any): JSX.Element => {
-  return (
-    <Container {...props}>
-      <Text>{props?.children ?? 'Button'}</Text>
-    </Container>
-  );
+type Props = {
+  text?: string;
+  type: 'submit' | 'cancel';
+  readOnly?: boolean;
+  onPress?: () => void;
 };
 
-export default Button;
+export default function Button({
+  text,
+  type,
+  onPress = () => {},
+  readOnly = false,
+}: Props): JSX.Element {
+  const color = useMemo<string>(() => {
+    if (type === 'submit') {
+      if (readOnly) return colors.disableMain;
+      return colors.main;
+    }
+    if (readOnly) return colors.disable;
+    return colors.disable;
+  }, [type, readOnly]);
 
-const Container = styled.TouchableOpacity.attrs<{readOnly?: boolean}>(x => ({
+  return (
+    <Container
+      readOnly={readOnly}
+      text={text}
+      color={color}
+      onPress={readOnly ? () => {} : onPress}>
+      {text ? (
+        <Text>{text}</Text>
+      ) : (
+        <Icon name={type === 'submit' ? 'checkmark-sharp' : 'close'} />
+      )}
+    </Container>
+  );
+}
+
+type ContainerProps = {readOnly?: boolean; color: string; text?: string};
+const Container = styled.TouchableOpacity.attrs<ContainerProps>(x => ({
   activeOpacity: x?.readOnly ? 1 : 0.7,
-}))<{readOnly: boolean}>`
-  border: 1px solid ${x => (x?.readOnly ? '#04827f' : '#00a7a4')};
-  background-color: ${x => (x?.readOnly ? '#058785' : '#00ADA9')};
+}))<ContainerProps>`
+  background-color: ${x => x?.color};
   padding: 12px;
   border-radius: 4px;
+  flex: 1;
+  margin: 5px;
+  max-width: 700px;
+  align-items: center;
+  justify-content: center;
+`;
+const Icon = styled(Ionicons)`
+  color: #fff;
+  font-size: 20px;
 `;
 const Text = styled.Text`
-  color: #ffffff;
-  text-align: center;
-  font-size: 14px;
+  color: #fff;
+  font-size: 15px;
 `;

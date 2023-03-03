@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
+import {colors} from '../../assets/strings';
 import useBleConnect from '../../hooks/useBleConnect';
 import useStorage from '../../hooks/useStorage';
 import ItemConnecting from './ItemConnecting';
@@ -20,7 +21,7 @@ export default function Item({data, isPass = false}: Props) {
     setTimeout(() => {
       setIsConnecting(false);
       dispatch({type: 'device', payload: data});
-    }, 2000);
+    }, 1000);
   };
 
   const onPress = async (): Promise<void> => {
@@ -79,5 +80,5 @@ const Name = styled(Text)`
 `;
 const Id = styled(Text)`
   font-size: 13px;
-  color: #777;
+  color: ${colors.disable};
 `;

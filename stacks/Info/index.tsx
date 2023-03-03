@@ -1,10 +1,11 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ConnectDevice from '../../layouts/ConnectDevice';
+import HeaderStatus from '../../layouts/HeaderStatus';
 import AppInfoScreen from '../../screens/AppInfo';
 import BatteryUseInfoScreen from '../../screens/BatteryUseInfo';
 import DeviceInfoScreen from '../../screens/DeviceInfo';
 import InfoScreen from '../../screens/Info';
 import PumpUseInfoScreen from '../../screens/PumpUseInfo';
+import UseDefaultInfoScreen from '../../screens/UseDefaultInfo';
 import UseInfoScreen from '../../screens/UseInfo';
 
 const Stack = createNativeStackNavigator();
@@ -13,11 +14,16 @@ export default function InfoStack() {
   return (
     <Stack.Navigator
       initialRouteName="InfoScreen"
-      screenOptions={{headerTitleAlign: 'center', headerRight: ConnectDevice}}>
+      screenOptions={{headerTitleAlign: 'center', headerRight: HeaderStatus}}>
       <Stack.Screen
         name="InfoScreen"
         component={InfoScreen}
         options={{title: '정 보'}}
+      />
+      <Stack.Screen
+        name="UseDefaultInfoScreen"
+        component={UseDefaultInfoScreen}
+        options={{title: '사용 전 지침사항'}}
       />
       <Stack.Screen
         name="UseInfoScreen"

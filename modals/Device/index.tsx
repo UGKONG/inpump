@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import styled from 'styled-components/native';
+import {colors} from '../../assets/strings';
 import ButtonLoading from '../../layouts/ButtonLoading';
 import Container from '../../layouts/Container';
 import ModalTitle from '../../layouts/ModalTitle';
@@ -35,7 +36,7 @@ const Header = styled.View`
   flex-direction: row;
 `;
 const Text = styled.Text<{size?: number; bold?: boolean}>`
-  color: #666;
+  color: ${colors.disable};
   font-size: 13px;
   font-weight: 500;
 `;

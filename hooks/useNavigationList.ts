@@ -31,17 +31,17 @@ export default function useNavigationList() {
       },
       {
         id: 2,
-        name: 'History',
-        title: '히스토리',
-        icon: {default: icons.history[0], focus: icons.history[1], size: 24},
-        component: HistoryStack,
-      },
-      {
-        id: 3,
         name: 'Setting',
         title: '설정',
         icon: {default: icons.setting[0], focus: icons.setting[1], size: 24},
         component: SettingStack,
+      },
+      {
+        id: 3,
+        name: 'History',
+        title: '히스토리',
+        icon: {default: icons.history[0], focus: icons.history[1], size: 24},
+        component: HistoryStack,
       },
       {
         id: 4,
