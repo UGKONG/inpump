@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {description} from '../../assets/strings';
 import Button from '../../layouts/Button';
 import Container from '../../layouts/Container';
+import Item from '../../layouts/Item';
 import ItemGroup from '../../layouts/ItemGroup';
 import Select from '../../layouts/Select';
 import Setting from '../../layouts/Setting';
@@ -32,6 +33,15 @@ export default function OutMealSettingScreen({
     <Container.Scroll>
       <SettingDescription text={description.outMeal} />
 
+      <ItemGroup title="아침주입 설정값" style={{marginTop: 0}} />
+      <Item title="30U" />
+
+      <ItemGroup title="점심주입 설정값" style={{marginTop: 0}} />
+      <Item title="30U" />
+
+      <ItemGroup title="저녁주입 설정값" style={{marginTop: 0}} />
+      <Item title="32U" />
+
       <ItemGroup title="회식 시간 설정" style={{marginTop: 0}} />
       <Setting.Row>
         <Select
@@ -43,9 +53,10 @@ export default function OutMealSettingScreen({
       </Setting.Row>
 
       <Setting.Buttons>
-        <Button type="submit" onPress={submit} text="회 식  주 입" />
+        <Button type="submit" onPress={submit} text="회식적용" />
         <Button
           type="cancel"
+          text="취소"
           onPress={isModal ? close : () => navigation.goBack()}
         />
       </Setting.Buttons>

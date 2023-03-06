@@ -49,26 +49,26 @@ export default function SettingScreen({navigation}: any) {
         title="기초 설정"
         onPress={() => onPress('FoundationSettingScreen')}
       />
-      <Item
-        title="운동 주입"
+      {/* <Item
+        title="운동 적용"
         onPress={() => onPress('ExerciseSettingScreen')}
-      />
+      /> */}
       <ItemGroup title="식사" />
       <Item title="식사 설정" onPress={() => onPress('MealSettingScreen')} />
-      <Item
+      {/* <Item
         title="식사 주입"
         onPress={() => onPress('MealPushSettingScreen')}
-      />
-      <Item title="회식 주입" onPress={() => onPress('OutMealSettingScreen')} />
-      <Item title="추가 주입" onPress={() => onPress('AddPushSettingScreen')} />
+      /> */}
+      {/* <Item title="회식 적용" onPress={() => onPress('OutMealSettingScreen')} /> */}
+      {/* <Item title="추가 주입" onPress={() => onPress('AddPushSettingScreen')} /> */}
 
-      <ItemGroup title="주사기" />
+      {/* <ItemGroup title="주사기" />
       <Item title="잔량 수정" onPress={() => onPress('RemainSettingScreen')} />
       <Item title="교체" onPress={() => onPress('ChangeSettingScreen')} />
       <Item title="공기 배출" onPress={() => onPress('OutAirSettingScreen')} />
 
       <ItemGroup title="정보" />
-      <Item title="설정 단위" onPress={() => onPress('UnitSettingScreen')} />
+      <Item title="설정 단위" onPress={() => onPress('UnitSettingScreen')} /> */}
 
       <ItemGroup title="장치" subTitle={'연결창치: ' + device?.name} />
       <Item

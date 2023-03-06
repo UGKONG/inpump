@@ -6,6 +6,9 @@ type Props = {
 };
 type Response = {result: boolean; error: string | null | Error};
 
+const os = 'android';
+const errorMessage = '권한이 없거나 지원되지 않습니다.';
+
 // 안드로이드 권한 요청
 export default function useAndroidPermission() {
   const fn = (props?: Props): Promise<Response> => {
@@ -25,7 +28,7 @@ export default function useAndroidPermission() {
 
           if (x === 'denied' || y === 'denied' || z === 'denied') {
             result = false;
-            error = 'ANDROID : 권한이 없습니다.';
+            error = os + ' : ' + errorMessage;
             if (props?.fail) props?.fail();
             return;
           }
@@ -35,7 +38,7 @@ export default function useAndroidPermission() {
         })
         .catch(err => {
           result = false;
-          error = 'ANDROID : 권한이 없습니다.';
+          error = os + ' : ' + errorMessage;
           console.log(err);
           if (props?.fail) props?.fail();
         })

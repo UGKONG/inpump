@@ -5,6 +5,7 @@ import BatteryUseInfoScreen from '../../screens/BatteryUseInfo';
 import DeviceInfoScreen from '../../screens/DeviceInfo';
 import InfoScreen from '../../screens/Info';
 import PumpUseInfoScreen from '../../screens/PumpUseInfo';
+import SetUseInfoScreen from '../../screens/SetUseInfo';
 import UseDefaultInfoScreen from '../../screens/UseDefaultInfo';
 import UseInfoScreen from '../../screens/UseInfo';
 
@@ -29,6 +30,11 @@ export default function InfoStack() {
         name="UseInfoScreen"
         component={UseInfoScreen}
         options={{title: '사용 방법 정보'}}
+      />
+      <Stack.Screen
+        name="SetUseInfoScreen"
+        component={SetUseInfoScreen}
+        options={{title: '주입세트 교체 방법'}}
       />
       <Stack.Screen
         name="BatteryUseInfoScreen"

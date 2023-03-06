@@ -12,5 +12,6 @@ module.exports = {
     'react-native/no-inline-styles': 'off',
     'no-unreachable': 'off',
     curly: 'off',
+    quotes: 'off',
   },
 };

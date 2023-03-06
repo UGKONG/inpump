@@ -7,7 +7,12 @@ import ItemGroup from '../../layouts/ItemGroup';
 import Setting from '../../layouts/Setting';
 import SettingDescription from '../../layouts/SettingDescription';
 
-export default function MealPushSettingScreen() {
+type Props = {isModal?: boolean; close?: () => void};
+
+export default function MealPushSettingScreen({
+  isModal = false,
+  close = () => {},
+}: Props) {
   const navigation = useNavigation();
 
   const submit = (): void => {
@@ -18,21 +23,22 @@ export default function MealPushSettingScreen() {
     <Container.Scroll>
       <SettingDescription text={description.mealPush} />
 
-      <ItemGroup title="최근 주입시간" style={{marginTop: 0}} />
-      <Item title="09시 42분 25초" />
-
-      <ItemGroup title="최근 주입량" style={{marginTop: 0}} />
+      <ItemGroup title="아침주입 설정값" style={{marginTop: 0}} />
       <Item title="30U" />
 
-      <ItemGroup title="금일 총 추가 주입량" style={{marginTop: 0}} />
-      <Item title="2U" />
+      <ItemGroup title="점심주입 설정값" style={{marginTop: 0}} />
+      <Item title="30U" />
 
-      <ItemGroup title="금일 총 주입량" style={{marginTop: 0}} />
+      <ItemGroup title="저녁주입 설정값" style={{marginTop: 0}} />
       <Item title="32U" />
 
       <Setting.Buttons>
-        <Button type="submit" onPress={submit} text="저 녁 식 사  주 입" />
-        <Button type="cancel" onPress={() => navigation.goBack()} />
+        <Button type="submit" onPress={submit} text="식사주입" />
+        <Button
+          type="cancel"
+          text="취소"
+          onPress={isModal ? close : () => navigation.goBack()}
+        />
       </Setting.Buttons>
     </Container.Scroll>
   );

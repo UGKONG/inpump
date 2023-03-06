@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import Container from '../../layouts/Container';
 import Item from '../../layouts/Item';

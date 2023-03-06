@@ -17,13 +17,17 @@ export default function UseInfoScreen() {
         onPress={() => onPress('UseDefaultInfoScreen')}
       />
       <Item
+        title="주입세트 교체 방법"
+        onPress={() => onPress('SetUseInfoScreen')}
+      />
+      <Item
         title="배터리 교체 방법"
         onPress={() => onPress('BatteryUseInfoScreen')}
       />
-      <Item
+      {/* <Item
         title="인슐린 펌프 작동 방법"
         onPress={() => onPress('PumpUseInfoScreen')}
-      />
+      /> */}
     </Container.Scroll>
   );
 }

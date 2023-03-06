@@ -54,9 +54,10 @@ export default function ExerciseSettingScreen({
       </Setting.Row>
 
       <Setting.Buttons>
-        <Button type="submit" onPress={submit} text="운 동  주 입" />
+        <Button type="submit" onPress={submit} text="운동적용" />
         <Button
           type="cancel"
+          text="취소"
           onPress={isModal ? close : () => navigation.goBack()}
         />
       </Setting.Buttons>

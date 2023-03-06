@@ -3,12 +3,12 @@ import {Alert} from 'react-native';
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from '../../layouts/Modal';
-import MealSettingScreen from '../MealSetting';
 import AddPushSettingScreen from '../AddPushSetting';
 import OutMealSettingScreen from '../OutMealSetting';
 import ExerciseSettingScreen from '../ExerciseSetting';
 import ModalTitle from '../../layouts/ModalTitle';
 import {colors} from '../../assets/strings';
+import MealPushSettingScreen from '../MealPushSetting';
 
 type Props = {
   isYes: boolean;
@@ -61,11 +61,11 @@ export default function ControllerBox({isYes, setIsYes}: Props) {
         </Button>
         <Button border={true} onPress={() => setIsOutMealModal(true)}>
           <Icon name="cafe-outline" />
-          <ButtonText>회식 주입</ButtonText>
+          <ButtonText>회식 적용</ButtonText>
         </Button>
         <Button border={true} onPress={() => setIsExerciseModal(true)}>
           <Icon name="bicycle-outline" />
-          <ButtonText>운동 주입</ButtonText>
+          <ButtonText>운동 적용</ButtonText>
         </Button>
         <Button height={50} border={false} onPress={startOrStop}>
           <ButtonText color={stopText?.color} size={16}>
@@ -79,7 +79,7 @@ export default function ControllerBox({isYes, setIsYes}: Props) {
       <>
         <Modal visible={isMealModal}>
           <ModalTitle title="식사 주입" close={() => setIsMealModal(false)} />
-          <MealSettingScreen isModal close={() => setIsMealModal(false)} />
+          <MealPushSettingScreen isModal close={() => setIsMealModal(false)} />
         </Modal>
         <Modal visible={isAddModal}>
           <ModalTitle title="추가 주입" close={() => setIsAddModal(false)} />
@@ -87,7 +87,7 @@ export default function ControllerBox({isYes, setIsYes}: Props) {
         </Modal>
         <Modal visible={isOutMealModal}>
           <ModalTitle
-            title="회식 주입"
+            title="회식 적용"
             close={() => setIsOutMealModal(false)}
           />
           <OutMealSettingScreen
@@ -97,7 +97,7 @@ export default function ControllerBox({isYes, setIsYes}: Props) {
         </Modal>
         <Modal visible={isExerciseModal}>
           <ModalTitle
-            title="운동 주입"
+            title="운동 적용"
             close={() => setIsExerciseModal(false)}
           />
           <ExerciseSettingScreen
@@ -133,11 +133,11 @@ const ButtonText = styled.Text.attrs(() => ({
   numberOfLines: 1,
 }))<{color?: string; size?: number}>`
   color: ${x => x?.color || '#343434'};
-  font-size: ${x => x?.size ?? 14}px;
+  font-size: ${x => x?.size ?? 13}px;
   font-weight: 700;
-  letter-spacing: 1px;
-  padding: 6px;
+  margin-bottom: 1px;
 `;
 const Icon = styled(Ionicons)`
   font-size: 26px;
+  margin-bottom: 5px;
 `;

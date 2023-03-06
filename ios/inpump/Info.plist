@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>inpump</string>
+	<string>HealUS</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -43,9 +43,9 @@
 	<string>블루투스 장치를 검색을 위해 권한이 필요합니다.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>블루투스 장치를 검색을 위해 권한이 필요합니다.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>블루투스 장치를 검색을 위해 권한이 필요합니다.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<string>블루투스 장치를 검색을 위해 권한이 필요합니다.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>블루투스 장치를 검색을 위해 권한이 필요합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
@@ -83,9 +83,9 @@
 	<string>UIStatusBarStyleDarkContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

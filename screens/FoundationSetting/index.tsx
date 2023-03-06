@@ -1,22 +1,24 @@
 import {useNavigation} from '@react-navigation/native';
 import {useMemo, useState} from 'react';
 import styled from 'styled-components/native';
-import {colors, description, hours, values} from '../../assets/strings';
+import {colors, description, milliNumbers, values} from '../../assets/strings';
 import Button from '../../layouts/Button';
 import Container from '../../layouts/Container';
 import ItemGroup from '../../layouts/ItemGroup';
 import Select from '../../layouts/Select';
 import Setting from '../../layouts/Setting';
 import SettingDescription from '../../layouts/SettingDescription';
+import Unit from '../../layouts/Unit';
 
-type Value = {
+type CurrentTime = {
   id: number;
   start: number;
   end: number;
   value: number;
   isActive: boolean;
 };
-const currentValue = new Array(24).fill(0).map((_, i) => ({
+type Value = {int: number; float: number};
+const currentTime = new Array(24).fill(0).map((_, i) => ({
   id: i + 1,
   start: i,
   end: i + 1,
@@ -26,42 +28,63 @@ const currentValue = new Array(24).fill(0).map((_, i) => ({
 
 export default function FoundationSettingScreen() {
   const navigation = useNavigation();
-  const [value, setValue] = useState<Value[]>(currentValue);
-  const [unit, setUnit] = useState<number>(15);
+  const [time, setTime] = useState<CurrentTime[]>(currentTime);
+  const [value, setUnit] = useState<Value>({int: 15, float: 0});
 
-  const sortValue = useMemo<Value[]>(() => {
-    return value?.sort((a, b) => a?.id - b?.id);
-  }, [value]);
+  const sortValue = useMemo<CurrentTime[]>(() => {
+    return time?.sort((a, b) => a?.id - b?.id);
+  }, [time]);
+
+  const changeValue = (key: keyof Value, val: number): void => {
+    setUnit(prev => ({...prev, [key]: val}));
+  };
 
   const toggle = (id: number): void => {
-    let find = value?.find(x => x?.id === id);
+    let find = time?.find(x => x?.id === id);
     if (!find) return;
-    let other = value?.filter(x => x?.id !== id);
+    let other = time?.filter(x => x?.id !== id);
 
     let copy = {...find, isActive: !find?.isActive};
-    setValue([...other, copy]);
+    setTime([...other, copy]);
   };
 
   const save = (): void => {
-    let activeList = value?.filter(x => x?.isActive);
-    let otherList = value?.filter(x => !x?.isActive);
+    let activeList = time?.filter(x => x?.isActive);
+    let otherList = time?.filter(x => !x?.isActive);
 
-    activeList = activeList?.map(x => ({...x, value: unit, isActive: false}));
+    activeList = activeList?.map(x => ({
+      ...x,
+      value: value?.int + value?.float,
+      isActive: false,
+    }));
     otherList = otherList?.map(x => ({...x, isActive: false}));
-    setValue([...otherList, ...activeList]);
+    setTime([...otherList, ...activeList]);
   };
 
   const submit = (): void => {
-    console.log(value);
+    console.log(time);
   };
 
   return (
     <Container.Scroll>
       <SettingDescription text={description.foundation} />
 
-      <ItemGroup title="기초단위 설정" style={{marginTop: 0}} />
+      <ItemGroup
+        title="기초단위 설정"
+        subTitle="(단위: U)"
+        style={{marginTop: 0}}
+      />
       <Setting.Row>
-        <Select unit="U" value={unit} list={values} onChange={setUnit} />
+        <Select
+          value={value?.int}
+          list={values}
+          onChange={x => changeValue('int', x)}
+        />
+        <Select
+          value={value?.float}
+          list={milliNumbers}
+          onChange={x => changeValue('float', x)}
+        />
         <SettingBtn onPress={save}>
           <SettingBtnText>설정</SettingBtnText>
         </SettingBtn>
@@ -89,8 +112,8 @@ export default function FoundationSettingScreen() {
       </ToggleBtnContainer>
 
       <Setting.Buttons>
-        <Button type="submit" onPress={submit} />
-        <Button type="cancel" onPress={() => navigation.goBack()} />
+        <Button type="submit" onPress={submit} text="저장" />
+        <Button type="cancel" onPress={() => navigation.goBack()} text="취소" />
       </Setting.Buttons>
     </Container.Scroll>
   );
@@ -105,6 +128,7 @@ const SettingBtn = styled.TouchableOpacity.attrs(() => ({
   align-items: center;
   justify-content: center;
   border-radius: 6px;
+  margin-left: 10px;
 `;
 const SettingBtnText = styled.Text`
   color: #fff;

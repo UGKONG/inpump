@@ -15,7 +15,7 @@ export default function ValueContainer() {
       <ItemGroup title="금일 주입 내용" subTitle="(실제 넣은 값)" />
       <Item title={'기초주입 7.3  식사주입 15.0  추가주입 5.0'} />
 
-      <ItemGroup title="히스토리" subTitle="최근순" />
+      <ItemGroup title="히스토리" />
     </Container>
   );
 }

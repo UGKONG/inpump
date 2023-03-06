@@ -33,11 +33,11 @@ export default function ConnectedDeviceInfo() {
       (batteryPercentNow / batteryPercentTotal) * 100,
     );
 
-    let stateColor = colors.main;
+    let stateColor: string = colors.main;
     if (statePercent <= 30) stateColor = colors.warn;
     if (statePercent <= 15) stateColor = colors.error;
 
-    let batteryColor = colors.main;
+    let batteryColor: string = colors.main;
     if (batteryPercent <= 30) batteryColor = colors.warn;
     if (batteryPercent <= 15) batteryColor = colors.error;
 
@@ -61,13 +61,13 @@ export default function ConnectedDeviceInfo() {
         style={{marginTop: 0}}
       />
       <Item
-        title={'UUID : ' + device?.id ?? '-'}
+        title={'UUID : ' + (device?.id ?? '-')}
         style={{minHeight: 40}}
         fontStyle={{fontSize: 13}}
         nonePress
       />
       <Item
-        title={'장치명 : ' + device?.name ?? '-'}
+        title={'장치명 : ' + (device?.name ?? '-')}
         style={{minHeight: 40}}
         fontStyle={{fontSize: 13}}
         nonePress

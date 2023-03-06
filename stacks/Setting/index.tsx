@@ -33,7 +33,7 @@ export default function SettingStack() {
       <Stack.Screen
         name="ExerciseSettingScreen"
         component={ExerciseSettingScreen}
-        options={{title: '운동 주입'}}
+        options={{title: '운동 적용'}}
       />
       <Stack.Screen
         name="StopSettingScreen"
@@ -53,7 +53,7 @@ export default function SettingStack() {
       <Stack.Screen
         name="OutMealSettingScreen"
         component={OutMealSettingScreen}
-        options={{title: '회식 주입'}}
+        options={{title: '회식 적용'}}
       />
       <Stack.Screen
         name="AddPushSettingScreen"

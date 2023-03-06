@@ -6,7 +6,6 @@ import {
   AppState,
   NativeModules,
   NativeEventEmitter,
-  Alert,
 } from 'react-native';
 import Navigation from './layouts/Navigation';
 import SplashScreen from 'react-native-splash-screen';
@@ -65,7 +64,7 @@ export default function App(): JSX.Element {
   };
 
   const init = (): (() => void) => {
-    // storage.removeItem('device'); // TEST
+    // storage.removeItem('device'); // DEV
 
     console.log(os, ': App Reloaded.');
     setTimeout(() => SplashScreen.hide(), 1000);
