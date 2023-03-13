@@ -12,6 +12,7 @@ import RemainSettingScreen from '../../screens/RemainSetting';
 import ChangeSettingScreen from '../../screens/ChangeSetting';
 import OutAirSettingScreen from '../../screens/OutAirSetting';
 import UnitSettingScreen from '../../screens/UnitSetting';
+import LangSettingScreen from '../../screens/LangSetting';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,6 +80,11 @@ export default function SettingStack() {
         name="UnitSettingScreen"
         component={UnitSettingScreen}
         options={{title: '설정 단위'}}
+      />
+      <Stack.Screen
+        name="LangSettingScreen"
+        component={LangSettingScreen}
+        options={{title: '언어'}}
       />
     </Stack.Navigator>
   );

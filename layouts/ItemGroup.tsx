@@ -41,6 +41,7 @@ const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `;
 const GroupText = styled.Text.attrs(() => ({
   numberOfLines: 1,

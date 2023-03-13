@@ -17,10 +17,12 @@ import useBleInit from './hooks/useBleInit';
 import useBleResponse from './hooks/useBleResponse';
 import useBleConnect from './hooks/useBleConnect';
 import useStorage from './hooks/useStorage';
+import text from './assets/lang';
 
 const os = Platform.OS;
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
+const barStyle = os === 'ios' ? 'dark-content' : 'light-content';
 
 export default function App(): JSX.Element {
   const storage = useStorage();
@@ -28,18 +30,23 @@ export default function App(): JSX.Element {
   const bleInit = useBleInit();
   const bleConnect = useBleConnect();
   const bleResponse = useBleResponse();
+  const lang = useSelector((x: Store) => x?.lang);
   const isPin = useSelector((x: Store) => x?.isPin);
   const device = useSelector((x: Store) => x?.device);
 
-  const barStyle = useMemo<StatusBarStyle>(() => {
-    return os === 'ios' ? 'dark-content' : 'light-content';
-  }, [os]);
-
   const isModal = useMemo<{pin: boolean; device: boolean}>(() => {
-    if (!isPin) return {pin: true, device: false};
     if (!device) return {pin: false, device: true};
+    if (!isPin) return {pin: true, device: false};
     return {pin: false, device: false};
   }, [isPin, device]);
+
+  // 언어 초기화
+  const languageInit = async (): Promise<void> => {
+    const {error, result} = await storage.getItem('lang');
+    if (error) return console.log('언어 조회 실패');
+    dispatch({type: 'TEXT', payload: text[(result || 'ko') as Lang]});
+    console.log('언어 :', result);
+  };
 
   const statusChange = (): (() => void) => {
     const status = AppState.addEventListener('change', state => {
@@ -66,6 +73,7 @@ export default function App(): JSX.Element {
   const init = (): (() => void) => {
     // storage.removeItem('device'); // DEV
 
+    languageInit();
     console.log(os, ': App Reloaded.');
     setTimeout(() => SplashScreen.hide(), 1000);
 
@@ -95,14 +103,14 @@ export default function App(): JSX.Element {
       {/* 화면 리스트 */}
       <Navigation />
 
-      {/* 잠금 모달 */}
-      <Modal visible={isModal.pin} style="overFullScreen">
-        <PinScreen />
-      </Modal>
-
       {/* 장치 연결 모달 */}
       <Modal visible={isModal.device} style="overFullScreen">
         <DeviceScreen />
+      </Modal>
+
+      {/* 잠금 모달 */}
+      <Modal visible={isModal.pin} style="overFullScreen">
+        <PinScreen />
       </Modal>
     </>
   );

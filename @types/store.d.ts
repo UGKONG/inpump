@@ -6,4 +6,6 @@ declare type Dispatch = {
 declare type Store = {
   isPin: boolean;
   device: null | Device;
+  lang: Lang;
+  readonly TEXT: {[key: string]: string};
 };

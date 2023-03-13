@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
+import {Alert} from 'react-native';
 import {description} from '../../assets/strings';
 import Button from '../../layouts/Button';
 import Container from '../../layouts/Container';
@@ -27,26 +28,34 @@ export default function ExerciseSettingScreen({
 
   const submit = (): void => {
     console.log(value);
+    Alert.alert('운동적용', '저장되었습니다.');
+    close();
   };
 
   return (
     <Container.Scroll>
       <SettingDescription text={description.exercise} />
 
-      <ItemGroup title="시간 설정" style={{marginTop: 0}} />
+      <ItemGroup
+        title="시간 설정"
+        subTitle="(단위: 시간)"
+        style={{marginTop: 0}}
+      />
       <Setting.Row>
         <Select
-          unit="시간"
           value={value?.hour}
           list={hours}
           onChange={x => changeValue('hour', x)}
         />
       </Setting.Row>
 
-      <ItemGroup title="감량 설정" style={{marginTop: 0}} />
+      <ItemGroup
+        title="감량 설정"
+        subTitle="(단위: %)"
+        style={{marginTop: 0}}
+      />
       <Setting.Row>
         <Select
-          unit="%"
           value={value?.percent}
           list={values}
           onChange={x => changeValue('percent', x)}
@@ -57,7 +66,7 @@ export default function ExerciseSettingScreen({
         <Button type="submit" onPress={submit} text="운동적용" />
         <Button
           type="cancel"
-          text="취소"
+          text="닫기"
           onPress={isModal ? close : () => navigation.goBack()}
         />
       </Setting.Buttons>

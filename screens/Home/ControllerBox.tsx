@@ -78,28 +78,22 @@ export default function ControllerBox({isYes, setIsYes}: Props) {
       {/* 모달 */}
       <>
         <Modal visible={isMealModal}>
-          <ModalTitle title="식사 주입" close={() => setIsMealModal(false)} />
+          <ModalTitle title="식사 주입" />
           <MealPushSettingScreen isModal close={() => setIsMealModal(false)} />
         </Modal>
         <Modal visible={isAddModal}>
-          <ModalTitle title="추가 주입" close={() => setIsAddModal(false)} />
+          <ModalTitle title="추가 주입" />
           <AddPushSettingScreen isModal close={() => setIsAddModal(false)} />
         </Modal>
         <Modal visible={isOutMealModal}>
-          <ModalTitle
-            title="회식 적용"
-            close={() => setIsOutMealModal(false)}
-          />
+          <ModalTitle title="회식 적용" />
           <OutMealSettingScreen
             isModal
             close={() => setIsOutMealModal(false)}
           />
         </Modal>
         <Modal visible={isExerciseModal}>
-          <ModalTitle
-            title="운동 적용"
-            close={() => setIsExerciseModal(false)}
-          />
+          <ModalTitle title="운동 적용" />
           <ExerciseSettingScreen
             isModal
             close={() => setIsExerciseModal(false)}

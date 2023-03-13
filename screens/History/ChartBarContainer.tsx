@@ -45,24 +45,32 @@ export default function ChartBarContainer({dataList, max}: Props) {
       {dataList?.map((item, i) => (
         <ColBar key={item?.id} isFirst={i === 0}>
           {/* 추가 */}
-          <Bar color="#f0e4b0" height={percent(item?.value?.add ?? 0)}>
-            <BarValue isSmall={item?.value?.add < 5}>
-              {item?.value?.add?.toFixed(1)}
-            </BarValue>
+          <Bar color={colors?.add} height={percent(item?.value?.add ?? 0)}>
+            {item?.value?.add > 0 && (
+              <BarValue isSmall={item?.value?.add < 5}>
+                {item?.value?.add?.toFixed(1)}
+              </BarValue>
+            )}
           </Bar>
 
           {/* 식사 */}
-          <Bar color="#bde3bd" height={percent(item?.value?.meal ?? 0)}>
-            <BarValue isSmall={item?.value?.meal < 5}>
-              {item?.value?.meal?.toFixed(1)}
-            </BarValue>
+          <Bar color={colors?.meal} height={percent(item?.value?.meal ?? 0)}>
+            {item?.value?.meal > 0 && (
+              <BarValue isSmall={false}>
+                {item?.value?.meal?.toFixed(1)}
+              </BarValue>
+            )}
           </Bar>
 
           {/* 기초 */}
-          <Bar color="#bfcbee" height={percent(item?.value?.foundation ?? 0)}>
-            <BarValue isSmall={item?.value?.foundation < 5}>
-              {item?.value?.foundation?.toFixed(1)}
-            </BarValue>
+          <Bar
+            color={colors?.foundation}
+            height={percent(item?.value?.foundation ?? 0)}>
+            {item?.value?.foundation && (
+              <BarValue isSmall={false}>
+                {item?.value?.foundation?.toFixed(1)}
+              </BarValue>
+            )}
           </Bar>
 
           {/* 토탈 */}

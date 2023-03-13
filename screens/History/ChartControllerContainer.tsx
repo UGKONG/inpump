@@ -13,6 +13,7 @@ type DateString = {
   now: string;
   next: string;
 };
+const dateStep = 7;
 
 export default function ChartControllerContainer({date, setDate}: Props) {
   let returnString = (dt: Date): string => {
@@ -20,17 +21,16 @@ export default function ChartControllerContainer({date, setDate}: Props) {
   };
 
   const dateString = useMemo<DateString>(() => {
-    let range = 1;
     let _date = new Date(date);
     let now = returnString(_date);
-    _date?.setDate(_date?.getDate() - range);
+    _date?.setDate(_date?.getDate() - dateStep);
     let prev = returnString(_date);
-    _date?.setDate(_date?.getDate() + range * 2);
+    _date?.setDate(_date?.getDate() + dateStep * 2);
     let next = returnString(_date);
     return {prev, now, next};
   }, [date]);
 
-  const move = (range: -1 | 1): void => {
+  const move = (range: number): void => {
     setDate(prev => {
       let _date = new Date(prev);
       _date?.setDate(_date?.getDate() + range);
@@ -40,12 +40,12 @@ export default function ChartControllerContainer({date, setDate}: Props) {
 
   return (
     <Container>
-      <MoveBtn dir="left" onPress={() => move(-1)}>
+      <MoveBtn dir="left" onPress={() => move(dateStep * -1)}>
         <Icon name="chevron-back" />
         <Text>{dateString?.prev || '-'}</Text>
       </MoveBtn>
       <ActiveDate>{dateString?.now || '-'}</ActiveDate>
-      <MoveBtn dir="right" onPress={() => move(1)}>
+      <MoveBtn dir="right" onPress={() => move(dateStep * 1)}>
         <Text>{dateString?.next || '-'}</Text>
         <Icon name="chevron-forward" />
       </MoveBtn>

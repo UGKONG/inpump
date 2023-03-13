@@ -1,12 +1,15 @@
+import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 
 type Props = {
   text?: string;
 };
 
+const {width} = Dimensions.get('screen');
+
 export default function SettingDescription({text = '설명'}: Props) {
   return (
-    <Container>
+    <Container style={{width: width - 20}}>
       <Text>{text}</Text>
     </Container>
   );

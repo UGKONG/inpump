@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import Container from '../../layouts/Container';
 import Loading from '../../layouts/Loading';

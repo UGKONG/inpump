@@ -34,7 +34,11 @@ const Scroll = (props: ScrollProps): JSX.Element => {
       ref={props?.childRef}
       style={props?.style ?? {}}
       scrollEventThrottle={1}
-      refreshControl={<RefreshControl refreshing={isRefresh} onRefresh={fn} />}
+      refreshControl={
+        props?.onRefresh ? (
+          <RefreshControl refreshing={isRefresh} onRefresh={fn} />
+        ) : undefined
+      }
       {...props}>
       {props?.children ?? null}
     </ScrollContainer>
@@ -50,9 +54,9 @@ const View = (props: ViewProps): JSX.Element => {
 };
 
 const ScrollContainer = styled.ScrollView`
+  position: relative;
   width: 100%;
   flex: 1;
-  position: relative;
   background-color: #fff;
   padding-bottom: 100px;
 `;

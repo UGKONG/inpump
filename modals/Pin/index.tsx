@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Dimensions, Vibration} from 'react-native';
+import {Dimensions, Platform, Vibration} from 'react-native';
 import styled from 'styled-components/native';
 import Container from '../../layouts/Container';
 import Loading from '../../layouts/Loading';
@@ -8,12 +8,9 @@ import {useDispatch} from 'react-redux';
 import useStorage from '../../hooks/useStorage';
 
 type Key = {element: string | JSX.Element; value: number | null};
-type CreatePin = {
-  step: 0 | 1 | 2;
-  pin1: string;
-  pin2: string;
-};
+type Value = 0 | 1 | 2;
 
+const os = Platform.OS;
 const {height} = Dimensions.get('screen');
 const keys: Key[] = [
   {element: '1', value: 1},
@@ -34,18 +31,11 @@ export default function PinScreen() {
   const dispatch = useDispatch();
   const storage = useStorage();
   const [activatePin, setActivatePin] = useState<string>('');
-  const [pin, setPin] = useState<string>('');
+  const [value, setValue] = useState<string>('');
   const [isPinFail, setIsPinFail] = useState<boolean>(false);
-  const [createPin, setCreatePin] = useState<CreatePin>({
-    step: 0,
-    pin1: '',
-    pin2: '',
-  });
 
-  const init = async (): Promise<void> => {
-    const {error, result} = await storage.getItem('pin');
-    if (error || !result) return setCreatePin(prev => ({...prev, step: 1}));
-    setActivatePin(result);
+  const getActivatePin = async (): Promise<void> => {
+    setActivatePin('0000'); // DEV
   };
 
   const active = (value: Key['value']): string => {
@@ -54,78 +44,43 @@ export default function PinScreen() {
   };
 
   const pinFailCallback = (): void => {
-    Vibration.vibrate();
+    if (os === 'ios') Vibration.vibrate();
     setIsPinFail(true);
-    setPin('');
+    setValue('');
   };
 
   const submit = (): void => {
-    // 새로운 비밀번호
-    if (createPin.step === 1) {
-      setCreatePin(prev => ({...prev, step: 2, pin1: pin}));
-      setPin('');
-      return;
-    }
-
-    // 새로운 비밀번호 확인
-    if (createPin.step === 2) {
-      // 새로운 비밀번호 일치 확인
-      if (createPin.pin1 !== pin) {
-        setCreatePin(prev => ({...prev, pin2: ''}));
-        return pinFailCallback();
-      }
-
-      // 새로운 비밀번호 생성
-      storage.setItem('pin', pin);
-      dispatch({type: 'isPin', payload: true});
-      return;
-    }
-
     // 현재 비밀번호 확인
-    if (activatePin !== pin) {
-      return pinFailCallback();
-    }
+    if (activatePin !== value) return pinFailCallback();
 
     // 성공
     dispatch({type: 'isPin', payload: true});
   };
 
-  const keyPress = (value: Key['value']): void => {
-    if (value === null) return;
-    let result = '';
-
-    if (value === -1) {
-      result = pin.slice(0, -1);
-    } else {
-      result = pin + String(value);
-    }
-
-    setPin(result);
+  const keyPress = (val: Key['value']): void => {
+    if (val === null) return;
+    let result = val === -1 ? value?.slice(0, -1) : value + String(val);
+    setValue(result);
   };
 
   useEffect(() => {
-    init();
+    getActivatePin();
   }, []);
+
   useEffect(() => {
-    if (pin?.length >= 4) submit();
-  }, [pin]);
+    if (value?.length >= 4) submit();
+  }, [value]);
 
   return (
     <Container.View>
       <InputContainer>
-        <Description isPinFail={isPinFail}>
-          {createPin.step === 1
-            ? '신 규 암 호'
-            : createPin.step === 2
-            ? '신 규 암 호 확 인'
-            : '인 펌 프 암 호'}
-        </Description>
+        <Description isPinFail={isPinFail}>암 호 입 력</Description>
         {isPinFail && <Notice>암호가 일치하지 않습니다.</Notice>}
         <ValueContainer>
-          <Value isActive={pin[0] ? true : false} />
-          <Value isActive={pin[1] ? true : false} />
-          <Value isActive={pin[2] ? true : false} />
-          <Value isActive={pin[3] ? true : false} />
+          <Value isActive={value[0] ? true : false} />
+          <Value isActive={value[1] ? true : false} />
+          <Value isActive={value[2] ? true : false} />
+          <Value isActive={value[3] ? true : false} />
         </ValueContainer>
       </InputContainer>
       <KeyContainer height={height * 0.6}>

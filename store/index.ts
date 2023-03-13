@@ -4,6 +4,8 @@ import {createStore} from 'redux';
 const currentState: Store = {
   isPin: false,
   device: null,
+  lang: 'ko',
+  TEXT: {},
 };
 
 // Store Reducer

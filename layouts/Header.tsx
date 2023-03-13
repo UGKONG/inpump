@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import {Platform} from 'react-native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -5,9 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const os = Platform.OS;
 
-export const HeaderTitle = () => (
-  <HeaderTitleContainer>인펌프</HeaderTitleContainer>
-);
+export const HeaderTitle = () => <HeaderTitleContainer>HealUS</HeaderTitleContainer>;
 
 export const HeaderRight = () => {
   const navigation = useNavigation();

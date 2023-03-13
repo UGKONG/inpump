@@ -1,10 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {Alert} from 'react-native';
 import {description} from '../../assets/strings';
 import Button from '../../layouts/Button';
 import Container from '../../layouts/Container';
 import Item from '../../layouts/Item';
 import ItemGroup from '../../layouts/ItemGroup';
+import Pushing from '../../layouts/Pushing';
 import Select from '../../layouts/Select';
 import Setting from '../../layouts/Setting';
 import SettingDescription from '../../layouts/SettingDescription';
@@ -26,7 +28,8 @@ export default function OutMealSettingScreen({
   };
 
   const submit = (): void => {
-    console.log('주입진행');
+    Alert.alert('회식적용', '저장되었습니다.');
+    close();
   };
 
   return (
@@ -42,10 +45,13 @@ export default function OutMealSettingScreen({
       <ItemGroup title="저녁주입 설정값" style={{marginTop: 0}} />
       <Item title="32U" />
 
-      <ItemGroup title="회식 시간 설정" style={{marginTop: 0}} />
+      <ItemGroup
+        title="회식 시간 설정"
+        subTitle="(단위: 시간)"
+        style={{marginTop: 0}}
+      />
       <Setting.Row>
         <Select
-          unit="시간"
           value={value?.hour}
           list={hours}
           onChange={x => changeValue('hour', x)}
@@ -56,7 +62,7 @@ export default function OutMealSettingScreen({
         <Button type="submit" onPress={submit} text="회식적용" />
         <Button
           type="cancel"
-          text="취소"
+          text="닫기"
           onPress={isModal ? close : () => navigation.goBack()}
         />
       </Setting.Buttons>
